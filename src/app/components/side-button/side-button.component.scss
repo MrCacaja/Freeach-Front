@@ -1,0 +1,12 @@
+ion-button {
+  --box-shadow: none;
+  height: 128px;
+  width: 32px;
+  position: relative;
+  --border-radius: 8px;
+}
+
+ion-icon {
+  position: absolute;
+  font-size: 40px;
+}

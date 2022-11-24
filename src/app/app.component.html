@@ -1,29 +1,34 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay">
-      <ion-content>
-        <ion-list id="inbox-list">
-          <ion-list-header>Inbox</ion-list-header>
-          <ion-note>hi@ionicframework.com</ion-note>
+    <ion-menu (ionDidClose)="toggleMenu(false)" [class]="(desktop && openMenu) || !desktop ? 'open' : 'closed'"
+              menuId="main" contentId="main-content" type="overlay">
+      <div class="header">
+        <ion-label color="secondary" class="title">Freeach</ion-label>
+        <ion-icon color="secondary" name="person-circle"></ion-icon>
+        <ion-label color="secondary" class="username">Placeholder de Souza Ipsum</ion-label>
 
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
-              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-        </ion-list>
+        <app-side-button class="menu-toggle" (click)="toggleMenu(false)" side="back"></app-side-button>
+      </div>
 
-        <ion-list id="labels-list">
-          <ion-list-header>Labels</ion-list-header>
-
-          <ion-item *ngFor="let label of labels" lines="none">
-            <ion-icon slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
-            <ion-label>{{ label }}</ion-label>
-          </ion-item>
-        </ion-list>
+      <ion-content class="pages">
+        <ion-item routerLinkActive="selected" lines="none" [routerLink]="page.route" *ngFor="let page of pages">
+          <ion-icon slot="start" color="secondary" [name]="page.icon"></ion-icon>
+          <ion-label color="secondary">{{page.name}}</ion-label>
+        </ion-item>
       </ion-content>
+
+      <div class="footer">
+        <ion-item lines="none" routerLink="auth">
+          <ion-icon slot="start" color="secondary" name="log-out"></ion-icon>
+          <ion-label color="secondary">Sair</ion-label>
+        </ion-item>
+      </div>
     </ion-menu>
+
     <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>
+
+  <div class="closed-menu">
+    <app-side-button *ngIf="!openMenu" (click)="toggleMenu(true)" side="forward"></app-side-button>
+  </div>
 </ion-app>
