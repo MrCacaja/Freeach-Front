@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpService} from "../../../services/http.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardPage implements OnInit {
 
-  constructor() { }
+  constructor(private httpSrvc: HttpService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    console.log(await this.httpSrvc.get('usuarios'))
   }
 
 }
