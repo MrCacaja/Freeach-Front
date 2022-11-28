@@ -1,0 +1,44 @@
+<ion-content>
+  <ion-label class="title">Preencha as informações abaixo:</ion-label>
+  <div class="center-card {{mobile ? 'mobile' : ''}}">
+    <form style="height: 100%" (submit)="register()" [formGroup]="form">
+      <div>
+        <ion-item class="input-item" lines="none">
+          <ion-label position="floating">Nome completo</ion-label>
+          <ion-input placeholder="Lorem Ipsum" formControlName="name"></ion-input>
+        </ion-item>
+        <ion-label *ngIf="form.controls['name'].dirty" color="danger"
+                   style="font-size: 12px">{{exceptionSrvc.treatFormError(form.controls['name'].errors)}}</ion-label>
+      </div>
+      <div>
+        <ion-item class="input-item" lines="none">
+          <ion-label position="floating">Email</ion-label>
+          <ion-input placeholder="lorem@ipsum.com" type="email" formControlName="email"></ion-input>
+        </ion-item>
+        <ion-label *ngIf="form.controls['email'].dirty" color="danger"
+                   style="font-size: 12px">{{exceptionSrvc.treatFormError(form.controls['email'].errors)}}</ion-label>
+      </div>
+      <div>
+        <ion-item class="input-item" lines="none">
+          <ion-label position="floating">Senha</ion-label>
+          <ion-input placeholder="******" type="password" formControlName="password"></ion-input>
+        </ion-item>
+        <ion-label *ngIf="form.controls['password'].dirty" color="danger"
+                   style="font-size: 12px">{{exceptionSrvc.treatFormError(form.controls['password'].errors)}}</ion-label>
+      </div>
+      <div>
+        <ion-item class="input-item" lines="none">
+          <ion-label position="floating">Confirmar senha</ion-label>
+          <ion-input placeholder="******" type="password" formControlName="password2"></ion-input>
+        </ion-item>
+        <ion-label *ngIf="form.controls['password2'].dirty" color="danger"
+                   style="font-size: 12px">{{exceptionSrvc.treatFormError(form.controls['password2'].errors)}}</ion-label>
+      </div>
+
+      <ion-label *ngIf="form.controls['password2'].dirty" color="danger"
+                 style="font-size: 12px">{{exceptionSrvc.treatFormError(form.errors)}}</ion-label>
+
+      <ion-button [disabled]="form.invalid" style="width: 50%" class="submit-button" type="submit">Cadastrar</ion-button>
+    </form>
+  </div>
+</ion-content>

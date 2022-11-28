@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {AnimationController, MenuController, Platform} from "@ionic/angular";
+import {MenuController, Platform} from "@ionic/angular";
+import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
+import {filter} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -9,7 +11,8 @@ import {AnimationController, MenuController, Platform} from "@ionic/angular";
 export class AppComponent implements OnInit {
   public desktop = true;
   public openMenu = true;
-  public pages: {icon: string, name: string, route: string}[] = [
+  public enabledMenu = true;
+  public pages: { icon: string, name: string, route: string }[] = [
     {
       icon: 'home',
       name: 'Home',
@@ -17,11 +20,20 @@ export class AppComponent implements OnInit {
     }
   ]
 
-  constructor(public menuCtrl: MenuController, private platform: Platform, private animationCtrl: AnimationController) {}
+  constructor(
+    public menuCtrl: MenuController,
+    private platform: Platform,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
+  }
 
   async ngOnInit() {
+    this.router.events.pipe(filter((e) => e instanceof NavigationEnd)).subscribe((data) => {
+      this.enabledMenu = !!this.route.root.firstChild?.snapshot.data['menu'];
+    });
     this.desktop = this.platform.is('desktop');
-    this.openMenu = this.desktop
+    this.openMenu = this.desktop;
   }
 
   async toggleMenu(open: boolean) {

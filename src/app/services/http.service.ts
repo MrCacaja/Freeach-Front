@@ -6,9 +6,8 @@ import {environment} from "../../environments/environment";
   providedIn: 'root'
 })
 export class HttpService {
-  private authToken: string = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiY2pkbkBmcmVlYWNoLmNvbSIsImV4cGlyZXMiOjE2NjkzNDE4NDYuNTQ4Njc3fQ.n0RD0FdrBK-Q4Dl7zVCCWnWUmqvSbOBzTLeuCX9A9R0';
   private headers = {
-    'Authorization': 'Bearer ' + this.authToken,
+    'Authorization': '',
     'Content-Type': 'application/json',
     'Accept': '*/*',
   }
@@ -16,23 +15,23 @@ export class HttpService {
   constructor(private http: HttpClient) {
   }
 
-  async post(url: string, body: any) {
-    this.headers.Authorization = 'Bearer ' + this.authToken
-    return await this.http.post(environment.backendUrl + url, body, {headers: this.headers}).toPromise();
+  async post(url: string, body: any, headers = {}): Promise<any> {
+    headers = {...this.headers, ...headers};
+    return await this.http.post(environment.backendUrl + url, body, {headers}).toPromise();
   }
 
-  async put(url: string, body: any) {
-    this.headers.Authorization = 'Bearer ' + this.authToken
-    return await this.http.put(environment.backendUrl + url, body, {headers: this.headers}).toPromise();
+  async put(url: string, body: any, headers = {}): Promise<any> {
+    headers = {...this.headers, ...headers};
+    return await this.http.put(environment.backendUrl + url, body, {headers}).toPromise();
   }
 
-  async delete(url: string) {
-    this.headers.Authorization = 'Bearer ' + this.authToken
-    return await this.http.delete(environment.backendUrl + url, {headers: this.headers}).toPromise();
+  async delete(url: string, headers = {}): Promise<any> {
+    headers = {...this.headers, ...headers};
+    return await this.http.delete(environment.backendUrl + url, {headers}).toPromise();
   }
 
-  async get(url: string) {
-    this.headers.Authorization = 'Bearer ' + this.authToken
-    return await this.http.get(environment.backendUrl + url, {headers: this.headers}).toPromise();
+  async get(url: string, headers = {}): Promise<any> {
+    headers = {...this.headers, ...headers};
+    return await this.http.get(environment.backendUrl + url, {headers}).toPromise();
   }
 }

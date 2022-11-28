@@ -1,0 +1,52 @@
+.center-card {
+  height: 60%;
+  min-width: 40vw;
+  width: 100%;
+  max-width: 512px;
+  box-shadow: 14px 14px 4px var(--ion-color-shadow);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  form {
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  &.mobile {
+    box-shadow: none;
+    border-radius: 0;
+  }
+}
+
+.card-footer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  a {
+    cursor: pointer;
+  }
+}
+
+.submit-button {
+  margin: 0 auto;
+}
+
+.title {
+  font-family: 'Gentium Book';
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 56px;
+  margin-bottom: 48px;
+}
+
+ion-content::part(scroll) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}

@@ -1,6 +1,7 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu (ionDidClose)="toggleMenu(false)" [class]="(desktop && openMenu) || !desktop ? 'open' : 'closed'"
+    <ion-menu (ionDidClose)="toggleMenu(false)"
+              [class]="enabledMenu && ((desktop && openMenu) || !desktop )? 'open' : 'closed'"
               menuId="main" contentId="main-content" type="overlay">
       <div class="header">
         <ion-label color="secondary" class="title">Freeach</ion-label>
@@ -29,6 +30,6 @@
   </ion-split-pane>
 
   <div class="closed-menu">
-    <app-side-button *ngIf="!openMenu" (click)="toggleMenu(true)" side="forward"></app-side-button>
+    <app-side-button *ngIf="!openMenu && enabledMenu" (click)="toggleMenu(true)" side="forward"></app-side-button>
   </div>
 </ion-app>

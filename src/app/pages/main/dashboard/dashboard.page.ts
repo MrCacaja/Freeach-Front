@@ -1,17 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import {HttpService} from "../../../services/http.service";
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.page.html',
   styleUrls: ['./dashboard.page.scss'],
 })
-export class DashboardPage implements OnInit {
+export class DashboardPage {
 
-  constructor(private httpSrvc: HttpService) { }
-
-  async ngOnInit() {
-    console.log(await this.httpSrvc.get('usuarios'))
-  }
+  constructor() { }
 
 }

@@ -1,0 +1,30 @@
+<ion-content>
+  <ion-label class="title">Bem-vindo!</ion-label>
+  <div class="center-card {{mobile ? 'mobile' : ''}}">
+    <form style="height: 75%" (submit)="login()" [formGroup]="form">
+      <div>
+        <ion-item class="input-item" lines="none">
+          <ion-label position="floating">Email</ion-label>
+          <ion-input placeholder="lorem@ipsum.com" type="email" formControlName="email"></ion-input>
+        </ion-item>
+        <ion-label *ngIf="form.controls['email'].dirty" color="danger"
+                   style="font-size: 12px">{{exceptionSrvc.treatFormError(form.controls['email'].errors)}}</ion-label>
+      </div>
+      <div>
+        <ion-item class="input-item" lines="none">
+          <ion-label position="floating">Senha</ion-label>
+          <ion-input placeholder="******" type="password" formControlName="password"></ion-input>
+        </ion-item>
+        <ion-label *ngIf="form.controls['password'].dirty" color="danger"
+                   style="font-size: 12px">{{exceptionSrvc.treatFormError(form.controls['password'].errors)}}</ion-label>
+      </div>
+
+      <ion-button [disabled]="form.invalid" style="width: 50%" class="submit-button" type="submit">Entrar</ion-button>
+    </form>
+
+    <div class="card-footer">
+      <a routerLink="register"><u>Não possui conta? Se cadastre aqui</u></a>
+      <a (click)="notImplemented()"><u>Esqueceu sua senha? Clique aqui</u></a>
+    </div>
+  </div>
+</ion-content>
