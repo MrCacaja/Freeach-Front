@@ -32,6 +32,10 @@ export class HttpService {
 
   async get(url: string, headers = {}): Promise<any> {
     headers = {...this.headers, ...headers};
-    return await this.http.get(environment.backendUrl + url, {headers}).toPromise();
+    const data: any = await this.http.get(environment.backendUrl + url, {headers}).toPromise();
+    if (data.limit > -1 && data.offset > -1) {
+      return data.data;
+    }
+    return data;
   }
 }

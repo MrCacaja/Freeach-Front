@@ -1,9 +1,32 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>dashboard</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <div class="content-header">
+    <ion-item class="input-item" lines="none">
+      <ion-icon slot="start" name="search"></ion-icon>
+      <ion-input placeholder="O que procura?"></ion-input>
+      <ion-icon slot="end" name="filter"></ion-icon>
+    </ion-item>
 
+    <ion-button *ngIf="!mobile" color="success">Editar home</ion-button>
+    <ion-button *ngIf="mobile" color="success">
+      <ion-icon name="settings"></ion-icon>
+    </ion-button>
+  </div>
+  <div class="cards">
+    <h1>Publicados recentemente</h1>
+    <ion-slides [options]="slidesOptions">
+      <ion-slide class="service-slide" *ngFor="let servico of servicos">
+        <img [src]="servico.link_imagem">
+        <div class="service-info">
+          <div class="service-types">
+            <div *ngFor="let tipo of servico.tipos_servico" [style.color]="tipo.cor">
+              <ion-icon [name]="tipo.icone"></ion-icon>
+            </div>
+          </div>
+          <div class="service-title">
+            <ion-label>{{servico.titulo}}</ion-label>
+          </div>
+        </div>
+      </ion-slide>
+    </ion-slides>
+  </div>
 </ion-content>

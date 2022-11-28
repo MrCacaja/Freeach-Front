@@ -29,8 +29,9 @@ export class RegisterPage implements OnInit {
     }, {validators: [this.checkPasswords]});
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.mobile = this.platform.is('mobile');
+    await this.authSrvc.logout();
   }
 
   checkPasswords(group: AbstractControl): ValidationErrors | null {

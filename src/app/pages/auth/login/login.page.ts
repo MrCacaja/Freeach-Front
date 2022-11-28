@@ -27,8 +27,9 @@ export class LoginPage implements OnInit {
     });
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.mobile = this.platform.is('mobile');
+    await this.authSrvc.logout();
   }
 
   async login() {

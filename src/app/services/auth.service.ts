@@ -29,6 +29,11 @@ export class AuthService {
     }
   }
 
+  logout() {
+    AuthService.authToken = '';
+    this.storage.set('authToken', '');
+  }
+
   async register(email: string, senha: string, nome: string) {
     const authData = await this.httpSrvc.post('signup', {email, senha, nome});
     if (authData.error) {
@@ -45,6 +50,6 @@ export class AuthService {
   }
 
   get defaultAuthHeader() {
-    return {'Authorization': 'Bearer: ' + this.authToken}
+    return {'Authorization': 'Bearer ' + this.authToken}
   }
 }

@@ -1,4 +1,7 @@
 <ion-content>
+  <ion-button *ngIf="mobile" routerLink=".." style="top: 0; left: 0; position: absolute" fill="clear">
+    <ion-icon color="primary" name="arrow-back"></ion-icon>
+  </ion-button>
   <ion-label class="title">Preencha as informações abaixo:</ion-label>
   <div class="center-card {{mobile ? 'mobile' : ''}}">
     <form style="height: 100%" (submit)="register()" [formGroup]="form">
