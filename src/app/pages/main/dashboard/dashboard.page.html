@@ -14,7 +14,7 @@
   <div class="cards">
     <h1>Publicados recentemente</h1>
     <ion-slides [options]="slidesOptions">
-      <ion-slide [routerLink]="['service', servico.id]" class="service-slide" *ngFor="let servico of servicos">
+      <ion-slide [routerLink]="['..', 'service', servico.id]" class="service-slide" *ngFor="let servico of servicos">
         <img [src]="servico.link_imagem">
         <div class="service-info">
           <div class="service-types">

@@ -1,0 +1,26 @@
+<ion-content #content>
+  <ion-list>
+    <div *ngFor="let mensagem of chat?.mensagens || []"
+         class="message {{mensagem.autor.id === usuario?.id ? 'user' : 'contact'}}">
+      <div *ngIf="mensagem.autor.id !== usuario?.id" class="arrow left"></div>
+      <div class="input-item">
+        <div class="header-info">
+          <ion-label>{{mensagem.data | date: 'dd/MM/yyyy'}}</ion-label>
+          <ion-label>Enviado por {{mensagem.autor.id === usuario?.id ? 'Você' : mensagem.autor.nome}}</ion-label>
+        </div>
+        <ion-text>{{mensagem.conteudo}}</ion-text>
+      </div>
+      <div *ngIf="mensagem.autor.id === usuario?.id" class="arrow right"></div>
+    </div>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-item class="input-item">
+    <ion-textarea rows="1" auto-grow [formControl]="messageForm" (keydown.enter)="sendMessage()"
+                  placeholder="Digite sua mensagem..."></ion-textarea>
+    <ion-button (click)="sendMessage()" fill="clear">
+      <ion-icon color="primary" name="send"></ion-icon>
+    </ion-button>
+  </ion-item>
+</ion-footer>

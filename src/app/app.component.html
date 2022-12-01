@@ -6,7 +6,7 @@
       <div class="header">
         <ion-label color="secondary" class="title">Freeach</ion-label>
         <ion-icon color="secondary" name="person-circle"></ion-icon>
-        <ion-label color="secondary" class="username">Placeholder de Souza Ipsum</ion-label>
+        <ion-label color="secondary" class="username">{{usuario?.nome || 'Placeholder de Souza Ipsum'}}</ion-label>
 
         <app-side-button class="menu-toggle" (click)="toggleMenu(false)" side="back"></app-side-button>
       </div>

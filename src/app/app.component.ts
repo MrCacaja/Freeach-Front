@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {MenuController, Platform} from "@ionic/angular";
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {filter} from "rxjs";
+import {AuthService} from "./services/auth.service";
+import {Usuario} from "./interfaces/usuario";
 
 @Component({
   selector: 'app-root',
@@ -16,15 +18,22 @@ export class AppComponent implements OnInit {
     {
       icon: 'home',
       name: 'Home',
-      route: 'main'
+      route: 'main/dashboard'
+    },
+    {
+      icon: 'people',
+      name: 'Contatos',
+      route: 'main/contacts'
     }
-  ]
+  ];
+  public usuario: Usuario | undefined;
 
   constructor(
     public menuCtrl: MenuController,
     private platform: Platform,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private authSrvc: AuthService
   ) {
   }
 
@@ -34,6 +43,10 @@ export class AppComponent implements OnInit {
     });
     this.desktop = this.platform.is('desktop');
     this.openMenu = this.desktop;
+    this.authSrvc.getUserData$().subscribe(async (user) => {
+      if (!user) return;
+      this.usuario = user;
+    });
   }
 
   async toggleMenu(open: boolean) {
