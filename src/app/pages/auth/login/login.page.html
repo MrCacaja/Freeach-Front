@@ -5,7 +5,8 @@
       <div>
         <ion-item class="input-item" lines="none">
           <ion-label position="floating">Email</ion-label>
-          <ion-input placeholder="lorem@ipsum.com" type="email" formControlName="email"></ion-input>
+          <ion-input (keydown.enter)="login()" placeholder="lorem@ipsum.com" type="email"
+                     formControlName="email"></ion-input>
         </ion-item>
         <ion-label *ngIf="form.controls['email'].dirty" color="danger"
                    style="font-size: 12px">{{exceptionSrvc.treatFormError(form.controls['email'].errors)}}</ion-label>
@@ -13,7 +14,8 @@
       <div>
         <ion-item class="input-item" lines="none">
           <ion-label position="floating">Senha</ion-label>
-          <ion-input placeholder="******" type="password" formControlName="password"></ion-input>
+          <ion-input (keydown.enter)="login()" placeholder="******" type="password"
+                     formControlName="password"></ion-input>
         </ion-item>
         <ion-label *ngIf="form.controls['password'].dirty" color="danger"
                    style="font-size: 12px">{{exceptionSrvc.treatFormError(form.controls['password'].errors)}}</ion-label>
